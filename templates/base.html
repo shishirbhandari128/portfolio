@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Shishir Bhandari | Django Developer{% endblock %}</title>
+    
+    <!-- Load static files -->
+    {% load static %}
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="text-xl font-bold text-blue-500">
+                        <span class="flex items-center space-x-2">
+                            {% if portfolio.logo %}
+                                <img src="{{ portfolio.logo.url }}" alt="Logo" class="w-15 h-12 rounded-full">
+                            {% else %}
+                                <span>Shishir<span class="text-gray-800">Bhandari</span></span>
+                            {% endif %}
+                        </span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/#home" class="nav-link text-gray-600 hover:text-blue-500 transition">Home</a>
+                    <a href="/#about" class="nav-link text-gray-600 hover:text-blue-500 transition">About</a>
+                    <a href="/#skills" class="nav-link text-gray-600 hover:text-blue-500 transition">Skills</a>
+                    <a href="/#education" class="nav-link text-gray-600 hover:text-blue-500 transition">Education</a>
+                    <a href="/#experience" class="nav-link text-gray-600 hover:text-blue-500 transition">Experience</a>
+                    <a href="/#projects" class="nav-link text-gray-600 hover:text-blue-500 transition">Projects</a>
+                    <a href="/#contact" class="nav-link text-gray-600 hover:text-blue-500 transition">Contact</a>
+                    <a href="/admin" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition shadow-md ml-8 flex items-center">
+                        <i class="fas fa-lock mr-2"></i>
+                         Login
+                    </a>
+
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-toggle" class="text-gray-600 hover:text-blue-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-500 hover:bg-gray-50">Home</a>
+                <a href="/#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-500 hover:bg-gray-50">About</a>
+                <a href="/#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-500 hover:bg-gray-50">Skills</a>
+                <a href="/#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-500 hover:bg-gray-50">Education</a>
+                <a href="/#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-500 hover:bg-gray-50">Experience</a>
+                <a href="/#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-500 hover:bg-gray-50">Projects</a>
+                <a href="/#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-500 hover:bg-gray-50">Contact</a>
+                <a href="/admin" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition shadow-md ml-4 flex items-center">
+                        <i class="fas fa-lock mr-2"></i>
+                        Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:justify-between md:items-center">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <a href="#home" class="text-xl font-bold text-blue-500">
+                        <span class="flex items-center space-x-2">
+                            {% if portfolio.logo %}
+                                <img src="{{ portfolio.logo.url }}" alt="Logo" class="w-15 h-12 rounded-full">
+                            {% else %}
+                                <span>Shishir<span class="text-gray-800">Bhandari</span></span>
+                            {% endif %}
+                        </span>
+                    </a>
+                    <p class="mt-2 text-gray-400">{{portfolio.footer_text}}</p>
+                </div>
+                <div class="flex justify-center md:justify-end space-x-6">
+                {% if social.github %}
+                    <a href="{{social.stackoverflow}}" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
+                {% endif %}
+                {% if social.linkedin %}
+                    <a href="{{social.stackoverflow}}" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin fa-lg"></i>
+                    </a>
+                {% endif %}
+                {% if social.twitter %}
+                    <a href="{{social.stackoverflow}}" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                {% endif %}
+                {% if social.facebook %}
+                    <a href="{{social.stackoverflow}}" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
+                {% endif %}
+                {% if social.stackoverflow %}
+                    <a href="{{social.stackoverflow}}" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-stack-overflow fa-lg"></i>
+                    </a>
+                {% endif %}
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>&copy; <span id="year"></span> {{portfolio.name}}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{% static 'index.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
