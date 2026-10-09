@@ -92,9 +92,11 @@
                     </div>
                     {% endfor %}
                 </div>
+                {% if portfolio.cv %}
                 <a href="{{ portfolio.cv.url }}" download class="inline-block mt-6 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition shadow-md">
                     <i class="fas fa-download mr-2"></i> Download CV
-                </a
+                </a>
+                {% endif %}
             </div>
         </div>
     </div>
